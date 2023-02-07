@@ -24,7 +24,7 @@ export const Home = () => {
         <Categories />
         <Sort />
       </div>
-      <h2 className='content__title'>Все краски</h2>
+      <h2 className='content__title'>Все краски!</h2>
       <div className='content__items'>
         {isLoading
           ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
