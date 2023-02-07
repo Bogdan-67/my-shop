@@ -1,0 +1,162 @@
+[
+  {
+    "id": 0,
+    "imageUrl": "https://tamiyarus.ru/wp-content/uploads/2022/07/80001_2-300x178.jpg",
+    "title": "X-1 Black (Черная глянцевая)",
+    "types": [0, 1],
+    "sizes": [20, 30, 40],
+    "price": 210,
+    "category": 0,
+    "rating": 9
+  },
+  {
+    "id": 1,
+    "imageUrl": "https://tamiyarus.ru/wp-content/uploads/2022/07/80002_2.jpg",
+    "title": "X-2 White (Белая глянцевая)",
+    "types": [0, 1],
+    "sizes": [20, 30, 40],
+    "price": 220,
+    "category": 0,
+    "rating": 6
+  },
+  {
+    "id": 2,
+    "imageUrl": "https://tamiyarus.ru/wp-content/uploads/2022/07/80003_2-300x178.jpg",
+    "title": "Х-3 Royal Blue (Королевская синяя)",
+    "types": [0, 1],
+    "sizes": [20, 30, 40],
+    "price": 200,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 13,
+    "imageUrl": "https://tamiyarus.ru/wp-content/uploads/2022/07/81516_2.jpg",
+    "title": "X-16 Purple (Пурпурная)",
+    "types": [0, 1],
+    "sizes": [20, 30, 40],
+    "price": 180,
+    "category": 0,
+    "rating": 3
+  },
+  {
+    "id": 3,
+    "imageUrl": "https://tamiyarus.ru/wp-content/uploads/2022/07/82107_1.jpg",
+    "title": "LP-7 Pure Red (Чисто-красная)",
+    "types": [2],
+    "sizes": [20, 30, 40],
+    "price": 260,
+    "category": 2,
+    "rating": 4
+  },
+  {
+    "id": 4,
+    "imageUrl": "https://tamiyarus.ru/wp-content/uploads/2022/07/82108_1.jpg",
+    "title": "LP-8 Pure Yellow (Чисто-желтая)",
+    "types": [2],
+    "sizes": [20, 30, 40],
+    "price": 260,
+    "category": 2,
+    "rating": 3
+  },
+  {
+    "id": 11,
+    "imageUrl": "https://tamiyarus.ru/wp-content/uploads/2022/07/82151_1.jpg",
+    "title": "LP-51 Pure Orange (Чисто-оранжевая)",
+    "types": [2],
+    "sizes": [20, 30, 40],
+    "price": 260,
+    "category": 2,
+    "rating": 3
+  },
+  {
+    "id": 12,
+    "imageUrl": "https://tamiyarus.ru/wp-content/uploads/2022/07/82167_1.jpg",
+    "title": "LP-67 Smoke (Полупрозрачный чёрный дымчатый лак)",
+    "types": [2],
+    "sizes": [20, 30, 40],
+    "price": 250,
+    "category": 2,
+    "rating": 5
+  },
+  {
+    "id": 5,
+    "imageUrl": "https://tamiyarus.ru/wp-content/uploads/2022/07/85001_2-300x178.jpg",
+    "title": "TS-1 Red Brown (Красно-коричневая)",
+    "types": [0],
+    "sizes": [50, 100],
+    "price": 710,
+    "category": 1,
+    "rating": 5
+  },
+  {
+    "id": 6,
+    "imageUrl": "https://tamiyarus.ru/wp-content/uploads/2022/07/85002_2.jpg",
+    "title": "TS-2 Dark Green (Темно-зеленая)",
+    "types": [0],
+    "sizes": [50, 100],
+    "price": 710,
+    "category": 1,
+    "rating": 7
+  },
+  {
+    "id": 7,
+    "imageUrl": "https://tamiyarus.ru/wp-content/uploads/2022/07/85003_2-300x178.jpg",
+    "title": "TS-3 Dark Yellow (Темно-желтая)",
+    "types": [0],
+    "sizes": [50, 100],
+    "price": 710,
+    "category": 1,
+    "rating": 5
+  },
+  {
+    "id": 14,
+    "imageUrl": "https://tamiyarus.ru/wp-content/uploads/2022/07/85022_2.jpg",
+    "title": "TS-22 Light Green (Светло-зеленая)",
+    "types": [0],
+    "sizes": [50, 100],
+    "price": 700,
+    "category": 1,
+    "rating": 4
+  },
+  {
+    "id": 8,
+    "imageUrl": "https://tamiyarus.ru/wp-content/uploads/2022/07/81511_2.jpg",
+    "title": "Маркер эмалевый Х-11 Chrome Silver (Серебряный металлик)",
+    "types": [1],
+    "sizes": [],
+    "price": 360,
+    "category": 3,
+    "rating": 8
+  },
+  {
+    "id": 9,
+    "imageUrl": "https://tamiyarus.ru/wp-content/uploads/2022/07/81512_2.jpg",
+    "title": "Маркер эмалевый Х-12 Gold Leaf (Золотой металлик)",
+    "types": [1],
+    "sizes": [],
+    "price": 360,
+    "category": 3,
+    "rating": 4
+  },
+  {
+    "id": 10,
+    "imageUrl": "https://tamiyarus.ru/wp-content/uploads/2022/07/81507_2.jpg",
+    "title": "Маркер эмалевый Х-7 Red (Красный глянцевый)",
+    "types": [1],
+    "sizes": [],
+    "price": 360,
+    "category": 3,
+    "rating": 3
+  },
+  {
+    "id": 15,
+    "imageUrl": "https://tamiyarus.ru/wp-content/uploads/2022/07/81701_2.jpg",
+    "title": "Маркер эмалевый XF-1 Flat Black (Черная матовая)",
+    "types": [1],
+    "sizes": [],
+    "price": 360,
+    "category": 3,
+    "rating": 5
+  }
+]
