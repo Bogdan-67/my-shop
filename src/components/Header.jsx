@@ -10,7 +10,7 @@ function Header() {
           <div className='header__logo'>
             <img width='38' src={Logo} alt='Paints logo' />
             <div>
-              <h1>React Paints</h1>
+              <h1>Paints shop</h1>
               <p>краски на любой вкус и цвет</p>
             </div>
           </div>
