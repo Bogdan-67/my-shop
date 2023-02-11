@@ -1,0 +1,63 @@
+.root {
+  position: relative;
+  margin-left: 500px;
+}
+
+.input {
+  border: 1px solid #eeeded;
+  padding: 15px 20px;
+  padding-right: 43px;
+  padding-top: 16px;
+  padding-left: 43px;
+  border-radius: 25px;
+  width: 300px;
+  transition: 0.5s;
+
+  &:focus {
+    border: none;
+    background: #eeeded;
+    padding: 15px 20px;
+    padding-right: 43px;
+    padding-top: 16px;
+    padding-left: 43px;
+    border-radius: 25px;
+    width: 300px;
+  }
+
+  &:visited,
+  &:focus-within,
+  &:focus-visible {
+    border: 1px solid #eeeded;
+    padding: 15px 20px;
+    padding-right: 43px;
+    padding-top: 16px;
+    padding-left: 43px;
+    border-radius: 25px;
+    width: 300px;
+    transition: 0.5s;
+  }
+}
+
+.searchIcon {
+  position: absolute;
+  opacity: 0.5;
+  width: 24px;
+  height: 24px;
+  top: 12px;
+  left: 13px;
+}
+
+.clearIcon {
+  position: absolute;
+  transition: all 0.5s;
+  opacity: 0.5;
+  width: 24px;
+  height: 24px;
+  right: 14px;
+  top: 13px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
