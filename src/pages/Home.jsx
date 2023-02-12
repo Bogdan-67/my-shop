@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCurrentPage } from '../redux/slices/filterSlice';
 
 import { SearchContext } from '../App';
 import Pagination from '../components/Pagination';
@@ -13,10 +14,14 @@ export const Home = () => {
   const { searchValue } = React.useContext(SearchContext);
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [currentPage, setCurrentPage] = React.useState(1);
 
-  const { categoryId, sort } = useSelector((state) => state.filter);
+  const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
   const sortType = sort.sortProperty;
+  const dispatch = useDispatch();
+
+  const onChangePage = (number) => {
+    dispatch(setCurrentPage(number));
+  };
 
   React.useEffect(() => {
     setIsLoading(true);
@@ -48,7 +53,7 @@ export const Home = () => {
       </div>
       <h2 className='content__title'>Все краски</h2>
       <div className='content__items'>{isLoading ? skeletons : paints}</div>
-      <Pagination onChangePage={(number) => setCurrentPage(number)} />
+      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   );
 };
