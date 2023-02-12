@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import { SearchContext } from '../App';
 import Pagination from '../components/Pagination';
 import Sort from '../components/Sort';
@@ -10,12 +12,13 @@ export const Home = () => {
   const { searchValue } = React.useContext(SearchContext);
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [categoryId, setCategoryId] = React.useState(0);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [sortType, setSortType] = React.useState({
     name: 'популярности',
     sortProperty: 'rating',
   });
+
+  const categoryId = useSelector((state) => state.filter.value);
 
   React.useEffect(() => {
     setIsLoading(true);
@@ -42,7 +45,7 @@ export const Home = () => {
   return (
     <div className='container'>
       <div className='content__top'>
-        <Categories value={categoryId} onClickCategory={(i) => setCategoryId(i)} />
+        <Categories />
         <Sort value={sortType} onClickSort={(i) => setSortType(i)} />
       </div>
       <h2 className='content__title'>Все краски</h2>
