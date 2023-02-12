@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 import { SearchContext } from '../App';
@@ -25,12 +26,12 @@ export const Home = () => {
     const category = categoryId > 0 ? `category=${categoryId}&` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
 
-    fetch(
-      `https://63bffb890cc56e5fb0e3c5a4.mockapi.io/items?page=${currentPage}&limit=8&${category}sortBy=${sortBy}&order=${order}${search}`,
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setItems(json);
+    axios
+      .get(
+        `https://63bffb890cc56e5fb0e3c5a4.mockapi.io/items?page=${currentPage}&limit=8&${category}sortBy=${sortBy}&order=${order}${search}`,
+      )
+      .then((res) => {
+        setItems(res.data);
         setIsLoading(false);
       });
     window.scrollTo(0, 0);
