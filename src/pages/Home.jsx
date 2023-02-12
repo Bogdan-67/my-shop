@@ -13,18 +13,15 @@ export const Home = () => {
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [sortType, setSortType] = React.useState({
-    name: 'популярности',
-    sortProperty: 'rating',
-  });
 
-  const categoryId = useSelector((state) => state.filter.value);
+  const { categoryId, sort } = useSelector((state) => state.filter);
+  const sortType = sort.sortProperty;
 
   React.useEffect(() => {
     setIsLoading(true);
 
-    const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
-    const sortBy = sortType.sortProperty.replace('-', '');
+    const order = sortType.includes('-') ? 'asc' : 'desc';
+    const sortBy = sortType.replace('-', '');
     const category = categoryId > 0 ? `category=${categoryId}&` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
 
@@ -46,7 +43,7 @@ export const Home = () => {
     <div className='container'>
       <div className='content__top'>
         <Categories />
-        <Sort value={sortType} onClickSort={(i) => setSortType(i)} />
+        <Sort />
       </div>
       <h2 className='content__title'>Все краски</h2>
       <div className='content__items'>{isLoading ? skeletons : paints}</div>
