@@ -1,11 +1,13 @@
 import React from 'react';
+import qs from 'qs';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCurrentPage } from '../redux/slices/filterSlice';
+import { setCurrentPage, setFilters } from '../redux/slices/filterSlice';
+import { useNavigate } from 'react-router-dom';
 
 import { SearchContext } from '../App';
 import Pagination from '../components/Pagination';
-import Sort from '../components/Sort';
+import Sort, { list } from '../components/Sort';
 import Categories from '../components/Categories';
 import ModelBlock from '../components/ModelBlock';
 import Skeleton from '../components/ModelBlock/Skeleton';
@@ -18,12 +20,15 @@ export const Home = () => {
   const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
   const sortType = sort.sortProperty;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isSearch = React.useRef(false);
+  const isMounted = React.useRef(false);
 
   const onChangePage = (number) => {
     dispatch(setCurrentPage(number));
   };
 
-  React.useEffect(() => {
+  const fetchPaints = () => {
     setIsLoading(true);
 
     const order = sortType.includes('-') ? 'asc' : 'desc';
@@ -39,7 +44,47 @@ export const Home = () => {
         setItems(res.data);
         setIsLoading(false);
       });
+  };
+
+  // Если был первый рендер, то проверяем URL-параметры и сохраняем в редуксе
+  React.useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+
+      const sort = list.find((obj) => (obj.sortProperty = params.sortProperty));
+
+      dispatch(
+        setFilters({
+          ...params,
+          sort,
+        }),
+      );
+      isSearch.current = true;
+    }
+  }, []);
+
+  // Если был первый рендер, то запрашиваем краски
+  React.useEffect(() => {
     window.scrollTo(0, 0);
+
+    if (!isSearch.current) {
+      fetchPaints();
+    }
+    isSearch.current = false;
+  }, [categoryId, sortType, searchValue, currentPage]);
+
+  // Если изменили параметры и был первый рендер
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const queryString = qs.stringify({
+        sortProperty: sort.sortProperty,
+        categoryId,
+        currentPage,
+      });
+
+      navigate(`?${queryString}`);
+    }
+    isMounted.current = true;
   }, [categoryId, sortType, searchValue, currentPage]);
 
   const paints = items.map((obj) => <ModelBlock key={obj.id} {...obj} />);
