@@ -11,13 +11,13 @@ import Sort, { list } from '../components/Sort';
 import Categories from '../components/Categories';
 import ModelBlock from '../components/ModelBlock';
 import Skeleton from '../components/ModelBlock/Skeleton';
+import { fetchPaints } from '../redux/slices/paintsSlice';
 
 export const Home = () => {
   const { searchValue } = React.useContext(SearchContext);
-  const [items, setItems] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
 
   const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
+  const { items, status } = useSelector((state) => state.paints);
   const sortType = sort.sortProperty;
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,22 +28,23 @@ export const Home = () => {
     dispatch(setCurrentPage(number));
   };
 
-  const fetchPaints = () => {
-    setIsLoading(true);
-
+  const getPaints = async () => {
     const order = sortType.includes('-') ? 'asc' : 'desc';
     const sortBy = sortType.replace('-', '');
     const category = categoryId > 0 ? `category=${categoryId}&` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
 
-    axios
-      .get(
-        `https://63bffb890cc56e5fb0e3c5a4.mockapi.io/items?page=${currentPage}&limit=8&${category}sortBy=${sortBy}&order=${order}${search}`,
-      )
-      .then((res) => {
-        setItems(res.data);
-        setIsLoading(false);
-      });
+    dispatch(
+      fetchPaints({
+        order,
+        sortBy,
+        category,
+        search,
+        currentPage,
+      }),
+    );
+
+    window.scrollTo(0, 0);
   };
 
   // Если был первый рендер, то проверяем URL-параметры и сохраняем в редуксе
@@ -68,7 +69,7 @@ export const Home = () => {
     window.scrollTo(0, 0);
 
     if (!isSearch.current) {
-      fetchPaints();
+      getPaints();
     }
     isSearch.current = false;
   }, [categoryId, sortType, searchValue, currentPage]);
@@ -97,7 +98,18 @@ export const Home = () => {
         <Sort />
       </div>
       <h2 className='content__title'>Все краски</h2>
-      <div className='content__items'>{isLoading ? skeletons : paints}</div>
+      {status === 'error' ? (
+        <div className='cart cart--empty'>
+          <h2>Произошла ошибка 😕</h2>
+          <p>
+            К сожалению, не удалось загрузить данные.
+            <br />
+            Попробуйте обновить страницу, либо зайдите позже.
+          </p>
+        </div>
+      ) : (
+        <div className='content__items'>{status === 'loading' ? skeletons : paints}</div>
+      )}
       <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   );
