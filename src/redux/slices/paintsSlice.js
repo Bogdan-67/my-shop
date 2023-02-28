@@ -38,6 +38,8 @@ export const paintsSlice = createSlice({
   },
 });
 
+export const selectPaintsData = (state) => state.paints;
+
 export const { setItems } = paintsSlice.actions;
 
 export default paintsSlice.reducer;

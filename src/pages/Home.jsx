@@ -1,6 +1,5 @@
 import React from 'react';
 import qs from 'qs';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentPage, setFilters } from '../redux/slices/filterSlice';
 import { useNavigate } from 'react-router-dom';
@@ -11,13 +10,11 @@ import Sort, { list } from '../components/Sort';
 import Categories from '../components/Categories';
 import ModelBlock from '../components/ModelBlock';
 import Skeleton from '../components/ModelBlock/Skeleton';
-import { fetchPaints } from '../redux/slices/paintsSlice';
+import { fetchPaints, selectPaintsData } from '../redux/slices/paintsSlice';
 
 export const Home = () => {
-  const { searchValue } = React.useContext(SearchContext);
-
-  const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
-  const { items, status } = useSelector((state) => state.paints);
+  const { categoryId, sort, currentPage, searchValue } = useSelector((state) => state.filter);
+  const { items, status } = useSelector(selectPaintsData);
   const sortType = sort.sortProperty;
   const dispatch = useDispatch();
   const navigate = useNavigate();
