@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem, selectCartItemById } from '../../redux/slices/cartSlice';
 
@@ -27,8 +28,10 @@ function ModelBlock({ id, title, price, imageUrl, sizes, types }) {
   return (
     <div className='model-block-wrapper'>
       <div className='model-block'>
-        <img className='model-block__image' src={imageUrl} alt='Model' />
-        <h4 className='model-block__title'>{title}</h4>
+        <Link to={`/paint/${id}`}>
+          <img className='model-block__image' src={imageUrl} alt='Model' />
+          <h4 className='model-block__title'>{title}</h4>
+        </Link>
         <div className='model-block__selector'>
           <ul>
             {types.map((typeId) => (

@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentPage, setFilters } from '../redux/slices/filterSlice';
 import { useNavigate } from 'react-router-dom';
 
-import { SearchContext } from '../App';
 import Pagination from '../components/Pagination';
 import Sort, { list } from '../components/Sort';
 import Categories from '../components/Categories';
