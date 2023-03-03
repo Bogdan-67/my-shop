@@ -1,0 +1,28 @@
+@import '../variables';
+
+.single-model {
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+
+  &__info {
+    margin-left: 50px;
+    width: 400px;
+  }
+
+  &__img {
+    width: 380px;
+  }
+
+  &__title {
+    margin-bottom: 30px;
+  }
+
+  &__types {
+    text-align: center;
+  }
+
+  &__sizes {
+    text-align: center;
+  }
+}
