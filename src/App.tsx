@@ -2,7 +2,7 @@ import './scss/app.scss';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
 import NotFound from './pages/NotFound';
-import FullPaint from './pages/FullPaint';
+import FullPaint from './pages/FullPaint.tsx';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';

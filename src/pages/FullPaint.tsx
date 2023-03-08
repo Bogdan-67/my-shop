@@ -4,8 +4,15 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem, selectCartItemById } from '../redux/slices/cartSlice';
 
-export const FullPaint = () => {
-  const [paints, setPaints] = React.useState();
+export const FullPaint: React.FC = () => {
+  const [paints, setPaints] = React.useState<{
+    imageUrl: string;
+    title: string;
+    price: number;
+    id: string;
+    sizes: number[];
+    types: string[];
+  }>();
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,6 +37,8 @@ export const FullPaint = () => {
     fetchPaints();
   }, []);
 
+  if (!paints) return <>Загрузка...</>;
+
   const onClickAdd = () => {
     const item = {
       id: paints.id,
@@ -43,8 +52,6 @@ export const FullPaint = () => {
     dispatch(addItem(item));
   };
 
-  if (!paints) return 'Загрузка...';
-
   return (
     <div className='single-model'>
       <img src={paints.imageUrl} alt='Photo' className='single-model__img' />
@@ -52,7 +59,7 @@ export const FullPaint = () => {
         <h2 className='single-model__title'>{paints.title}</h2>
         <div className='model-block__selector'>
           <ul className='single-model__types'>
-            {paints.types.map((typeId) => (
+            {paints.types.map((type, typeId) => (
               <li
                 key={typeId}
                 onClick={() => setActiveType(typeId)}
