@@ -7,6 +7,10 @@ type SortList = {
   sortProperty: string;
 };
 
+type OutsideClick = MouseEvent & {
+  path: Node[];
+};
+
 export const list: SortList[] = [
   { name: 'популярности (DESC)', sortProperty: 'rating' },
   { name: 'популярности (ASC)', sortProperty: '-rating' },
@@ -28,8 +32,9 @@ function Sort() {
   };
 
   React.useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (!event.path.includes(sortRef.current)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      const _event = event as OutsideClick;
+      if (sortRef.current && !_event.path.includes(sortRef.current)) {
         setOpen(false);
       }
     };
