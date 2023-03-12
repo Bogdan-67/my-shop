@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
 
-const Skeleton = (props) => (
+const Skeleton = () => (
   <ContentLoader
     className='model-block'
     speed={2}
@@ -9,8 +9,7 @@ const Skeleton = (props) => (
     height={400}
     viewBox='0 0 280 400'
     backgroundColor='#f3f3f3'
-    foregroundColor='#ecebeb'
-    {...props}>
+    foregroundColor='#ecebeb'>
     <circle cx='140' cy='83' r='83' />
     <rect x='0' y='259' rx='10' ry='10' width='280' height='62' />
     <rect x='0' y='185' rx='10' ry='10' width='280' height='54' />

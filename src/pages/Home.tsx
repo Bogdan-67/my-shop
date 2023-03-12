@@ -1,7 +1,7 @@
 import React from 'react';
 import qs from 'qs';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCurrentPage, setFilters } from '../redux/slices/filterSlice';
+import { selectFilter, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
 import { useNavigate } from 'react-router-dom';
 
 import Pagination from '../components/Pagination';
@@ -11,8 +11,8 @@ import ModelBlock from '../components/ModelBlock';
 import Skeleton from '../components/ModelBlock/Skeleton';
 import { fetchPaints, selectPaintsData } from '../redux/slices/paintsSlice';
 
-export const Home = () => {
-  const { categoryId, sort, currentPage, searchValue } = useSelector((state) => state.filter);
+export const Home: React.FC = () => {
+  const { categoryId, sort, currentPage, searchValue } = useSelector(selectFilter);
   const { items, status } = useSelector(selectPaintsData);
   const sortType = sort.sortProperty;
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export const Home = () => {
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
-  const onChangePage = (number) => {
+  const onChangePage = (number: number) => {
     dispatch(setCurrentPage(number));
   };
 
@@ -31,6 +31,7 @@ export const Home = () => {
     const search = searchValue ? `&search=${searchValue}` : '';
 
     dispatch(
+      //@ts-ignore
       fetchPaints({
         order,
         sortBy,
@@ -84,7 +85,7 @@ export const Home = () => {
     isMounted.current = true;
   }, [categoryId, sortType, searchValue, currentPage]);
 
-  const paints = items.map((obj) => <ModelBlock key={obj.id} {...obj} />);
+  const paints = items.map((obj: any) => <ModelBlock key={obj.id} {...obj} />);
   const skeletons = [...new Array(8)].map((_, index) => <Skeleton key={index} />);
 
   return (

@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectFilter, setCategory } from '../redux/slices/filterSlice';
+import { selectFilterCategory, setCategory } from '../redux/slices/filterSlice';
 
 function Categories() {
   const categories = ['Все', 'В баночках', 'В балончиках', 'Лаковые', 'Маркеры'];
 
-  const value = useSelector(selectFilter);
+  const value = useSelector(selectFilterCategory);
   const dispatch = useDispatch();
 
   return (
