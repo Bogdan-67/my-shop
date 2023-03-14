@@ -9,13 +9,14 @@ import Sort, { list } from '../components/Sort';
 import Categories from '../components/Categories';
 import ModelBlock from '../components/ModelBlock';
 import Skeleton from '../components/ModelBlock/Skeleton';
-import { fetchPaints, selectPaintsData } from '../redux/slices/paintsSlice';
+import { fetchPaints, SearchPaintsParams, selectPaintsData } from '../redux/slices/paintsSlice';
+import { useAppDispatch } from '../redux/store';
 
 export const Home: React.FC = () => {
   const { categoryId, sort, currentPage, searchValue } = useSelector(selectFilter);
   const { items, status } = useSelector(selectPaintsData);
   const sortType = sort.sortProperty;
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
@@ -31,13 +32,12 @@ export const Home: React.FC = () => {
     const search = searchValue ? `&search=${searchValue}` : '';
 
     dispatch(
-      //@ts-ignore
       fetchPaints({
         order,
         sortBy,
         category,
         search,
-        currentPage,
+        currentPage: String(currentPage),
       }),
     );
 
@@ -47,14 +47,16 @@ export const Home: React.FC = () => {
   // Если был первый рендер, то проверяем URL-параметры и сохраняем в редуксе
   React.useEffect(() => {
     if (window.location.search) {
-      const params = qs.parse(window.location.search.substring(1));
+      const params = qs.parse(window.location.search.substring(1)) as unknown as SearchPaintsParams;
 
-      const sort = list.find((obj) => obj.sortProperty === params.sortProperty);
+      const sort = list.find((obj) => obj.sortProperty === params.sortBy);
 
       dispatch(
         setFilters({
-          ...params,
-          sort,
+          searchValue: params.search,
+          categoryId: Number(params.category),
+          currentPage: Number(params.currentPage),
+          sort: sort || list[0],
         }),
       );
       isSearch.current = true;

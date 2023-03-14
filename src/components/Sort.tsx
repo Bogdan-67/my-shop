@@ -1,23 +1,23 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectSort, setSort } from '../redux/slices/filterSlice';
+import { selectSort, setSort, SortPropertyEnum } from '../redux/slices/filterSlice';
 
-type SortList = {
+type SortType = {
   name: string;
-  sortProperty: string;
+  sortProperty: SortPropertyEnum;
 };
 
 type OutsideClick = MouseEvent & {
   path: Node[];
 };
 
-export const list: SortList[] = [
-  { name: 'популярности (DESC)', sortProperty: 'rating' },
-  { name: 'популярности (ASC)', sortProperty: '-rating' },
-  { name: 'цене (DESC)', sortProperty: 'price' },
-  { name: 'цене (ASC)', sortProperty: '-price' },
-  { name: 'алфавиту (DESC)', sortProperty: 'title' },
-  { name: 'алфавиту (ASC)', sortProperty: '-title' },
+export const list: SortType[] = [
+  { name: 'популярности (DESC)', sortProperty: SortPropertyEnum.RATING_DESC },
+  { name: 'популярности (ASC)', sortProperty: SortPropertyEnum.RATING_ASC },
+  { name: 'Сначала подешевле', sortProperty: SortPropertyEnum.PRICE_ASC },
+  { name: 'Сначала подороже', sortProperty: SortPropertyEnum.PRICE_DESC },
+  { name: 'Алфавиту А-Я', sortProperty: SortPropertyEnum.TITLE_ASC },
+  { name: 'Алфавиту Я-А', sortProperty: SortPropertyEnum.TITLE_DESC },
 ];
 
 function Sort() {
@@ -26,7 +26,7 @@ function Sort() {
   const dispatch = useDispatch();
   const sortRef = React.useRef<HTMLDivElement>(null);
 
-  const onClickListItem = (i: SortList) => {
+  const onClickListItem = (i: SortType) => {
     dispatch(setSort(i));
     setOpen(false);
   };
