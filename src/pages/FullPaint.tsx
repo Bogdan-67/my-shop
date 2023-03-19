@@ -16,7 +16,7 @@ export const FullPaint: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const cartItem = useSelector(selectCartItemById(id));
+  const cartItem = useSelector(selectCartItemById(id as string));
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
   const typeNames = ['акриловая', 'эмалевая', 'лаковая'];
@@ -47,6 +47,7 @@ export const FullPaint: React.FC = () => {
       imageUrl: paints.imageUrl,
       type: typeNames[activeType],
       size: paints.sizes[activeSize],
+      count: 0,
     };
 
     dispatch(addItem(item));

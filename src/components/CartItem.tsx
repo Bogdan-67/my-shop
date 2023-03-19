@@ -32,7 +32,9 @@ export const CartItemBlock: React.FC<CartItemProps> = ({
   };
 
   const onClickMinus = () => {
-    if (count > 0) {
+    if (count === 1 && window.confirm('Вы действительно хотите удалить товар?')) {
+      dispatch(minusItem(id));
+    } else if (count > 1) {
       dispatch(minusItem(id));
     }
   };
